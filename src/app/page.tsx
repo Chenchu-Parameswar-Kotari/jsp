@@ -25,7 +25,7 @@ export default function Home() {
         <div className="pt-20 sm:pt-24 pb-6 sm:pb-8 px-3 sm:px-8">
           <div className="text-center mb-8">
             <p className="mt-2 text-gray-900 text-base font-semibold">
-              Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
+              Fill this form to register for <span className="text-[#E31B23] font-bold">JANASENA</span> membership and accidental insurance coverage.
               <br />
               Please provide accurate details for both Member and Nominee
             </p>
@@ -113,27 +113,27 @@ export default function Home() {
 
             <div className="mt-8">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Point(s) of Contact for Coordination</h2>
-              <div className="overflow-x-auto">
-                <table className="min-w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden">
+              <div className="overflow-x-auto -mx-3 sm:mx-0">
+                <table className="w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden table-fixed">
                   <thead className="bg-[#E31B23] text-white">
                     <tr>
-                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Key Element</th>
-                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Member</th>
-                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Nominee</th>
+                      <th className="w-1/4 px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Key Element</th>
+                      <th className="w-[37.5%] px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Member</th>
+                      <th className="w-[37.5%] px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Nominee</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="bg-white">
                       <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Member Name</td>
-                      <td className="px-3 sm:px-4 py-3" colSpan={2}>
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3" colSpan={2}>
+                        <div className="flex flex-col sm:flex-row gap-1 sm:gap-3">
                           <input
                             type="text"
                             placeholder="Enter member's full name"
-                            className="w-full flex-1 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                            className="w-full flex-1 rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
                           <select 
-                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-2 sm:mt-0"
+                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-1 sm:mt-0"
                           >
                             <option value="">Gender</option>
                             <option value="male">Male</option>
@@ -164,19 +164,19 @@ export default function Home() {
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-3 sm:px-4 py-3 font-semibold text-gray-900 whitespace-nowrap text-sm">Qualification / Education</td>
-                      <td className="px-3 sm:px-4 py-3">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3 font-semibold text-gray-900 whitespace-nowrap text-xs sm:text-sm">Qualification / Education</td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                          className="w-full rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
-                      <td className="px-3 sm:px-4 py-3">
+                      <td className="px-2 sm:px-4 py-2 sm:py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                          className="w-full rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
