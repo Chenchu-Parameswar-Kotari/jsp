@@ -1,5 +1,19 @@
 
+'use client';
+
 export default function Home() {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (form.checkValidity()) {
+      // Proceed with form submission
+      console.log('Form is valid, submitting...');
+    } else {
+      // Form has validation errors
+      console.log('Form has validation errors');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white flex items-center justify-center py-8 px-2">
       <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 border-red-600 relative overflow-hidden">
@@ -16,7 +30,7 @@ export default function Home() {
               Please provide accurate details for both Member and Nominee
             </p>
           </div>
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-900">Constituency</label>
