@@ -1,103 +1,300 @@
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-white flex items-center justify-center py-8 px-2">
+      <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 border-red-600 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-20 bg-[#E31B23] flex items-center justify-center z-10 rounded-t-2xl">
+          <h1 className="text-2xl font-bold text-white tracking-wide drop-shadow-lg">
+            Janasena Membership & Accidental Insurance Form
+          </h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="pt-24 pb-8 px-8">
+          <div className="text-center mb-8">
+            <p className="mt-2 text-black text-base font-semibold">
+              Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
+              <br />
+              Please provide accurate details for both Member and Nominee.
+            </p>
+          </div>
+          <form className="space-y-6">
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Constituency</label>
+                <input 
+                  type="text" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  placeholder="Enter constituency name" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Mandal(Rural)/ Town (Urban)</label>
+                <input 
+                  type="text" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  placeholder="Enter mandal or town name" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Panchayathi(Rural) / Street (Urban)</label>
+                <input 
+                  type="text" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  placeholder="Enter panchayathi or street name" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Village (Rural) / Ward (Urban)</label>
+                <input 
+                  type="text" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  placeholder="Enter village name or ward number" 
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Point of Contact(s) for Coordination</label>
+                <div className="space-y-4">
+                  <div className="flex gap-4 items-end">
+                    <div className="flex-1">
+                      <label className="block text-xs text-gray-600">Name1:</label>
+                      <input 
+                        type="text" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        placeholder="Enter contact name" 
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-xs text-gray-600">Phone:</label>
+                      <input 
+                        type="tel" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        placeholder="Enter phone number" 
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-4 items-end">
+                    <div className="flex-1">
+                      <label className="block text-xs text-gray-600">Name2:</label>
+                      <input 
+                        type="text" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        placeholder="Enter contact name" 
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <label className="block text-xs text-gray-600">Phone:</label>
+                      <input 
+                        type="tel" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        placeholder="Enter phone number" 
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8">
+              <h2 className="text-lg font-semibold text-gray-800 mb-4">Point(s) of Contact for Coordination</h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden">
+                  <thead className="bg-[#E31B23] text-white">
+                    <tr>
+                      <th className="px-4 py-3 font-bold text-lg">Key Element</th>
+                      <th className="px-4 py-3 font-bold text-lg">Member</th>
+                      <th className="px-4 py-3 font-bold text-lg">Nominee</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Member Name</td>
+                      <td className="px-4 py-3" colSpan={2}>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            placeholder="Enter member's full name"
+                            className="flex-1 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          />
+                          <select className="w-32 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2">
+                            <option value="">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Nominee Name</td>
+                      <td className="px-4 py-3" colSpan={2}>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            placeholder="Enter nominee's full name"
+                            className="flex-1 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          />
+                          <select className="w-32 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2">
+                            <option value="">Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Qualification / Education</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="e.g. 10th / Graduate"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="e.g. 10th / Graduate"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Profession</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter member's profession"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter nominee's profession"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Religion</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter member's religion"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter nominee's religion"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Reservation</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter member's reservation"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter nominee's reservation"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Caste</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter member's caste"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter nominee's caste"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Mobile Number</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter member's mobile number"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="text"
+                          placeholder="Enter nominee's mobile number"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-white">
+                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">AADHAR (upload)</td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="file"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          type="file"
+                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                        />
+                      </td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="px-3 py-2 font-medium text-gray-700 whitespace-nowrap">Photo (upload / camera)</td>
+                      <td className="px-3 py-2">
+                        <button
+                          type="button"
+                          className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-3 py-2 font-bold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                        >
+                          Capture Member Photo
+                        </button>
+                      </td>
+                      <td className="px-3 py-2">
+                        <button
+                          type="button"
+                          className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-3 py-2 font-bold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                        >
+                          Capture Nominee Photo
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="text-xs text-gray-500 mt-2">
+                  Use Capture to take live <span className="italic">photo</span> (shoulder-up), Cropping/resizing done client-side.
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-center gap-4 mt-8">
+              <button type="submit" className="bg-red-500 text-white font-bold py-2 px-6 rounded-lg shadow hover:bg-red-600 transition">
+                Submit
+              </button>
+              <button type="reset" className="bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-lg shadow hover:bg-gray-300 transition">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
