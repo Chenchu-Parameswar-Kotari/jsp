@@ -320,25 +320,98 @@ export default function Home() {
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
-                      <input
-                        type="file"
-                        name="memberAadharDocument"
-                        accept="image/*,.pdf"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        required
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberAadharCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberAadharFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="memberAadharCamera"
+                          type="file"
+                          name="memberAadharDocument"
+                          accept="image/*"
+                          capture="environment"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="memberAadharFile"
+                          type="file"
+                          name="memberAadharDocument"
+                          accept="image/*,.pdf"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="memberAadharLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
-                      <input
-                        type="file"
-                        name="memberPhoto"
-                        accept="image/*"
-                        capture="user"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        required
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberPhotoCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberPhotoFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="memberPhotoCamera"
+                          type="file"
+                          name="memberPhoto"
+                          accept="image/*"
+                          capture="user"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="memberPhotoFile"
+                          type="file"
+                          name="memberPhoto"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="memberPhotoLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -460,25 +533,98 @@ export default function Home() {
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
-                      <input
-                        type="file"
-                        name="nomineeAadharDocument"
-                        accept="image/*,.pdf"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        required
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineeAadharCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineeAadharFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="nomineeAadharCamera"
+                          type="file"
+                          name="nomineeAadharDocument"
+                          accept="image/*"
+                          capture="environment"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineeAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="nomineeAadharFile"
+                          type="file"
+                          name="nomineeAadharDocument"
+                          accept="image/*,.pdf"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineeAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="nomineeAadharLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
-                      <input
-                        type="file"
-                        name="nomineePhoto"
-                        accept="image/*"
-                        capture="user"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        required
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineePhotoCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineePhotoFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="nomineePhotoCamera"
+                          type="file"
+                          name="nomineePhoto"
+                          accept="image/*"
+                          capture="user"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineePhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="nomineePhotoFile"
+                          type="file"
+                          name="nomineePhoto"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineePhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="nomineePhotoLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
                   </div>
                 </div>
