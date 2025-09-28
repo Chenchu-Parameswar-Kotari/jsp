@@ -10,7 +10,7 @@ export default function Home() {
         </div>
         <div className="pt-24 pb-8 px-8">
           <div className="text-center mb-8">
-            <p className="mt-2 text-black text-base font-semibold">
+            <p className="mt-2 text-gray-900 text-base font-semibold">
               Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
               <br />
               Please provide accurate details for both Member and Nominee.
@@ -19,26 +19,26 @@ export default function Home() {
           <form className="space-y-6">
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Constituency</label>
+                <label className="block text-sm font-semibold text-gray-900">Constituency</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter constituency name" 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Mandal(Rural)/ Town (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900">Mandal(Rural)/ Town (Urban)</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                   placeholder="Enter mandal or town name" 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Panchayathi(Rural) / Street (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900">Panchayathi(Rural) / Street (Urban)</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                   placeholder="Enter panchayathi or street name" 
                 />
               </div>
