@@ -116,10 +116,7 @@ export default function Home() {
   console.log('Form is valid, starting submission');
   setIsSubmitting(true);
       try {
-        // Create FormData directly from the form element
-        const formData = new FormData(form);
-        
-        // Ensure all form fields are included
+        // Collect all non-file fields into a JSON object
         const formFields = [
           'constituency', 'mandalTown', 'panchayathiStreet', 'villageWard',
           'contactName1', 'phone1', 'contactName2', 'phone2',
@@ -128,9 +125,17 @@ export default function Home() {
           'nomineeFullName', 'nomineeGender', 'nomineeQualification', 'nomineeProfession',
           'nomineeReligion', 'nomineeCaste', 'nomineeReservation', 'nomineeMobileNumber'
         ];
-        
-        // Log form data for debugging
-        console.log('Form data before processing:', Object.fromEntries(formData.entries()));
+        const formJsonObj: { [key: string]: string } = {};
+        for (const field of formFields) {
+          const el = form.querySelector(`[name="${field}"]`) as HTMLInputElement | HTMLSelectElement | null;
+          if (el) {
+            formJsonObj[field] = el.value;
+          }
+        }
+        // Create FormData and append the JSON blob
+        const formData = new FormData();
+        const formJson = new Blob([JSON.stringify(formJsonObj)], { type: 'application/json' });
+        formData.append('form', formJson);
 
         // Append files to form data
         if (memberAadharInput?.files?.[0]) formData.append('memberAadharDocument', memberAadharInput.files[0]);
@@ -154,7 +159,7 @@ export default function Home() {
 
         try {
           console.log('Sending form data to server...');
-          const response = await fetch('/api/form', {
+          const response = await fetch('https://jsp-api.onrender.com/api/form', {
             method: 'POST',
             body: formData,
             signal: controller.signal,
@@ -183,13 +188,22 @@ export default function Home() {
               `HTTP error! status: ${response.status}, details: ${errorDetails}`
             );
           }
-
-          const result = await response.json();
-          console.log('Form submitted successfully:', result);
-          
+          let resultMessage = 'Form submitted successfully!';
+          try {
+            const result = await response.json();
+            resultMessage = result.message || JSON.stringify(result);
+          } catch (jsonErr) {
+            // If not JSON, try to get text
+            try {
+              resultMessage = await response.text();
+            } catch (textErr) {
+              // ignore
+            }
+          }
+          console.log('Form submitted successfully:', resultMessage);
           // Reset form after successful submission
           form.reset();
-          setSuccessMessage(result.message || 'Form submitted successfully!');
+          setSuccessMessage(resultMessage);
           setShowSuccessModal(true);
         } catch (error) {
           console.error('Error submitting form:', error);
