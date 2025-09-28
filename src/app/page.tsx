@@ -196,18 +196,30 @@ export default function Home() {
                     <tr className="bg-white">
                       <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Religion</td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter member's religion"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Religion</option>
+                          <option value="hindu">Hindu</option>
+                          <option value="muslim">Muslim</option>
+                          <option value="christian">Christian</option>
+                          <option value="buddhism">Buddhism</option>
+                          <option value="jainism">Jainism</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter nominee's religion"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Religion</option>
+                          <option value="hindu">Hindu</option>
+                          <option value="muslim">Muslim</option>
+                          <option value="christian">Christian</option>
+                          <option value="buddhism">Buddhism</option>
+                          <option value="jainism">Jainism</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
@@ -230,18 +242,28 @@ export default function Home() {
                     <tr className="bg-white">
                       <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Caste</td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter member's caste"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Caste Category</option>
+                          <option value="oc">OC (Open Category)</option>
+                          <option value="bc">BC (Backward Class)</option>
+                          <option value="sc">SC (Scheduled Caste)</option>
+                          <option value="st">ST (Scheduled Tribe)</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter nominee's caste"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Caste Category</option>
+                          <option value="oc">OC (Open Category)</option>
+                          <option value="bc">BC (Backward Class)</option>
+                          <option value="sc">SC (Scheduled Caste)</option>
+                          <option value="st">ST (Scheduled Tribe)</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
