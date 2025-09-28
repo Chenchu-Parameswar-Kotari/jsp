@@ -24,11 +24,11 @@ export async function POST(request: Request) {
     // Create a new FormData object
     const newFormData = new FormData();
 
-    // Add the JSON data with the specific content type
-    const blob = new Blob([JSON.stringify(formFields)], {
+    // Add the form fields as a JSON blob named 'form'
+    const formJson = new Blob([JSON.stringify(formFields)], {
       type: 'application/json'
     });
-    newFormData.append('form', blob, 'form.json');
+    newFormData.append('form', formJson);
 
     // Add files exactly as they are
     if (files.memberAadharDocument) newFormData.append('memberAadharDocument', files.memberAadharDocument);

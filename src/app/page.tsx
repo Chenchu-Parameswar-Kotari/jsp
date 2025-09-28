@@ -9,36 +9,31 @@ export default function Home() {
       try {
         const formData = new FormData();
         
-        // Create the form JSON data
-        const jsonData = {
-          constituency: (form.querySelector('[name="constituency"]') as HTMLInputElement)?.value || '',
-          mandalTown: (form.querySelector('[name="mandalTown"]') as HTMLSelectElement)?.value || '',
-          panchayathiStreet: (form.querySelector('[name="panchayathiStreet"]') as HTMLInputElement)?.value || '',
-          villageWard: (form.querySelector('[name="villageWard"]') as HTMLInputElement)?.value || '',
-          contactName1: (form.querySelector('[name="contactName1"]') as HTMLInputElement)?.value || '',
-          phone1: (form.querySelector('[name="phone1"]') as HTMLInputElement)?.value || '',
-          contactName2: (form.querySelector('[name="contactName2"]') as HTMLInputElement)?.value || '',
-          phone2: (form.querySelector('[name="phone2"]') as HTMLInputElement)?.value || '',
-          memberFullName: (form.querySelector('[name="memberFullName"]') as HTMLInputElement)?.value || '',
-          memberGender: (form.querySelector('[name="memberGender"]') as HTMLSelectElement)?.value || '',
-          memberQualification: (form.querySelector('[name="memberQualification"]') as HTMLInputElement)?.value || '',
-          memberProfession: (form.querySelector('[name="memberProfession"]') as HTMLSelectElement)?.value || '',
-          memberReligion: (form.querySelector('[name="memberReligion"]') as HTMLSelectElement)?.value || '',
-          memberCaste: (form.querySelector('[name="memberCaste"]') as HTMLSelectElement)?.value || '',
-          memberReservation: (form.querySelector('[name="memberReservation"]') as HTMLInputElement)?.value || '',
-          memberMobileNumber: (form.querySelector('[name="memberMobileNumber"]') as HTMLInputElement)?.value || '',
-          nomineeFullName: (form.querySelector('[name="nomineeFullName"]') as HTMLInputElement)?.value || '',
-          nomineeGender: (form.querySelector('[name="nomineeGender"]') as HTMLSelectElement)?.value || '',
-          nomineeQualification: (form.querySelector('[name="nomineeQualification"]') as HTMLInputElement)?.value || '',
-          nomineeProfession: (form.querySelector('[name="nomineeProfession"]') as HTMLSelectElement)?.value || '',
-          nomineeReligion: (form.querySelector('[name="nomineeReligion"]') as HTMLSelectElement)?.value || '',
-          nomineeCaste: (form.querySelector('[name="nomineeCaste"]') as HTMLSelectElement)?.value || '',
-          nomineeReservation: (form.querySelector('[name="nomineeReservation"]') as HTMLInputElement)?.value || '',
-          nomineeMobileNumber: (form.querySelector('[name="nomineeMobileNumber"]') as HTMLInputElement)?.value || ''
-        };
-
-        // Add form data as a string with type application/json
-        formData.append('form', JSON.stringify(jsonData));
+        // Add form fields directly
+        formData.append('constituency', (form.querySelector('[name="constituency"]') as HTMLInputElement)?.value || '');
+        formData.append('mandalTown', (form.querySelector('[name="mandalTown"]') as HTMLSelectElement)?.value || '');
+        formData.append('panchayathiStreet', (form.querySelector('[name="panchayathiStreet"]') as HTMLInputElement)?.value || '');
+        formData.append('villageWard', (form.querySelector('[name="villageWard"]') as HTMLInputElement)?.value || '');
+        formData.append('contactName1', (form.querySelector('[name="contactName1"]') as HTMLInputElement)?.value || '');
+        formData.append('phone1', (form.querySelector('[name="phone1"]') as HTMLInputElement)?.value || '');
+        formData.append('contactName2', (form.querySelector('[name="contactName2"]') as HTMLInputElement)?.value || '');
+        formData.append('phone2', (form.querySelector('[name="phone2"]') as HTMLInputElement)?.value || '');
+        formData.append('memberFullName', (form.querySelector('[name="memberFullName"]') as HTMLInputElement)?.value || '');
+        formData.append('memberGender', (form.querySelector('[name="memberGender"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberQualification', (form.querySelector('[name="memberQualification"]') as HTMLInputElement)?.value || '');
+        formData.append('memberProfession', (form.querySelector('[name="memberProfession"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberReligion', (form.querySelector('[name="memberReligion"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberCaste', (form.querySelector('[name="memberCaste"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberReservation', (form.querySelector('[name="memberReservation"]') as HTMLInputElement)?.value || '');
+        formData.append('memberMobileNumber', (form.querySelector('[name="memberMobileNumber"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeFullName', (form.querySelector('[name="nomineeFullName"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeGender', (form.querySelector('[name="nomineeGender"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeQualification', (form.querySelector('[name="nomineeQualification"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeProfession', (form.querySelector('[name="nomineeProfession"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeReligion', (form.querySelector('[name="nomineeReligion"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeCaste', (form.querySelector('[name="nomineeCaste"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeReservation', (form.querySelector('[name="nomineeReservation"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeMobileNumber', (form.querySelector('[name="nomineeMobileNumber"]') as HTMLInputElement)?.value || '');
 
         // Append file inputs
         const memberAadhar = (form.querySelector('[name="memberAadharDocument"]') as HTMLInputElement)?.files?.[0];
@@ -118,20 +113,18 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white rounded-xl shadow p-4 border border-gray-200">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Constituency</label>
-                <input 
+                                <input 
                   type="text" 
                   name="constituency"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter constituency name" 
-                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Mandal/Town</label>
-                <select 
+                                <select 
                   name="mandalTown"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                  required
                 >
                   <option value="">Select Mandal</option>
                   <option value="sri-kalahasti">Sri Kalahasti</option>
@@ -142,22 +135,20 @@ export default function Home() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Panchayathi/Street</label>
-                <input 
+                                <input 
                   type="text" 
                   name="panchayathiStreet"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter panchayathi or street name" 
-                  required
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Village/Ward</label>
-                <input 
+                                <input 
                   type="text" 
                   name="villageWard"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter village or ward" 
-                  required
                 />
               </div>
             </div>
