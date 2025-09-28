@@ -113,27 +113,27 @@ export default function Home() {
 
             <div className="mt-8">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Point(s) of Contact for Coordination</h2>
-              <div className="overflow-x-auto -mx-3 sm:mx-0">
+              <div className="overflow-x-auto">
                 <table className="min-w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden">
                   <thead className="bg-[#E31B23] text-white">
                     <tr>
-                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Key Element</th>
-                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Member</th>
-                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Nominee</th>
+                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Key Element</th>
+                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Member</th>
+                      <th className="px-3 sm:px-4 py-3 font-bold text-sm sm:text-lg">Nominee</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="bg-white">
-                                            <td className="px-2 sm:px-4 py-2 sm:py-3 font-semibold text-gray-900 whitespace-nowrap text-sm sm:text-base">Member Name</td>
-                      <td className="px-2 sm:px-4 py-2 sm:py-3" colSpan={2}>
-                        <div className="flex flex-col sm:flex-row gap-2">
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Member Name</td>
+                      <td className="px-3 sm:px-4 py-3" colSpan={2}>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                           <input
                             type="text"
                             placeholder="Enter member's full name"
-                            className="flex-1 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                            className="w-full flex-1 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
                           <select 
-                            className="w-full sm:w-32 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-2 sm:mt-0"
                           >
                             <option value="">Gender</option>
                             <option value="male">Male</option>
@@ -145,15 +145,15 @@ export default function Home() {
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Nominee Name</td>
-                      <td className="px-4 py-3" colSpan={2}>
-                        <div className="flex gap-2">
+                      <td className="px-3 sm:px-4 py-3" colSpan={2}>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                           <input
                             type="text"
                             placeholder="Enter nominee's full name"
-                            className="flex-1 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                            className="w-full flex-1 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
                           <select 
-                            className="w-full sm:w-32 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-2 sm:mt-0"
                           >
                             <option value="">Gender</option>
                             <option value="male">Male</option>
@@ -164,19 +164,19 @@ export default function Home() {
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Qualification / Education</td>
-                      <td className="px-4 py-3">
+                      <td className="px-3 sm:px-4 py-3 font-semibold text-gray-900 whitespace-nowrap text-sm">Qualification / Education</td>
+                      <td className="px-3 sm:px-4 py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                          className="w-full rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
-                      <td className="px-4 py-3">
+                      <td className="px-3 sm:px-4 py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                          className="w-full rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
