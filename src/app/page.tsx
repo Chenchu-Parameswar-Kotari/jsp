@@ -42,11 +42,15 @@ export default function Home() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900">Mandal(Rural)/ Town (Urban)</label>
-                <input 
-                  type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                  placeholder="Enter mandal or town name" 
-                />
+                <select 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                >
+                  <option value="">Select Mandal</option>
+                  <option value="sri-kalahasti">Sri Kalahasti</option>
+                  <option value="yerpedu">Yerpedu</option>
+                  <option value="tottambedu">Tottambedu</option>
+                  <option value="renigunta">Renigunta</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900">Panchayathi(Rural) / Street (Urban)</label>
