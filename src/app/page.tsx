@@ -72,12 +72,16 @@ export default function Home() {
           // Reset form after successful submission
           form.reset();
           alert(result.message || 'Form submitted successfully!');
-        } catch (error: any) {
+        } catch (error) {
           console.error('Error submitting form:', error);
-          if (error.name === 'AbortError') {
-            alert('Request timed out. Please try again.');
+          if (error instanceof Error) {
+            if (error.name === 'AbortError') {
+              alert('Request timed out. Please try again.');
+            } else {
+              alert(`Failed to submit form: ${error.message}`);
+            }
           } else {
-            alert(`Failed to submit form: ${error.message}`);
+            alert('An unknown error occurred.');
           }
         }
       } catch (error) {

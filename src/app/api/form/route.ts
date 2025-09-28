@@ -75,19 +75,19 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error) {
     // Log the detailed error
     console.error('Error in API route:', {
-      message: error.message,
-      stack: error.stack,
-      cause: error.cause
+      message: error instanceof Error ? error.message : 'An unknown error occurred',
+      stack: error instanceof Error ? error.stack : undefined,
+      cause: error instanceof Error ? error.cause : undefined
     });
 
     // Return a more detailed error response
     return NextResponse.json(
       { 
         error: 'Failed to process request',
-        details: error.message,
+        details: error instanceof Error ? error.message : 'An unknown error occurred',
         timestamp: new Date().toISOString()
       },
       { 
