@@ -106,15 +106,15 @@ export default function Home() {
                   </thead>
                   <tbody>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Member Name</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Member Name</td>
                       <td className="px-4 py-3" colSpan={2}>
                         <div className="flex gap-2">
                           <input
                             type="text"
                             placeholder="Enter member's full name"
-                            className="flex-1 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                            className="flex-1 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
-                          <select className="w-32 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2">
+                          <select className="w-32 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white">
                             <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -124,15 +124,15 @@ export default function Home() {
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Nominee Name</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Nominee Name</td>
                       <td className="px-4 py-3" colSpan={2}>
                         <div className="flex gap-2">
                           <input
                             type="text"
                             placeholder="Enter nominee's full name"
-                            className="flex-1 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                            className="flex-1 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
-                          <select className="w-32 rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2">
+                          <select className="w-32 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white">
                             <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -142,119 +142,119 @@ export default function Home() {
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Qualification / Education</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Qualification / Education</td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Profession</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Profession</td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter member's profession"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter nominee's profession"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Religion</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Religion</td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter member's religion"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter nominee's religion"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Reservation</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Reservation</td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter member's reservation"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter nominee's reservation"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Caste</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Caste</td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter member's caste"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="text"
                           placeholder="Enter nominee's caste"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">Mobile Number</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Mobile Number</td>
                       <td className="px-4 py-3">
                         <input
-                          type="text"
+                          type="tel"
                           placeholder="Enter member's mobile number"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
-                          type="text"
+                          type="tel"
                           placeholder="Enter nominee's mobile number"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                         />
                       </td>
                     </tr>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-black whitespace-nowrap">AADHAR (upload)</td>
+                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">AADHAR (upload)</td>
                       <td className="px-4 py-3">
                         <input
                           type="file"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
                         />
                       </td>
                       <td className="px-4 py-3">
                         <input
                           type="file"
-                          className="w-full rounded-lg border border-gray-300 focus:border-[#E31B23] focus:ring-[#E31B23] p-2 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
                         />
                       </td>
                     </tr>
