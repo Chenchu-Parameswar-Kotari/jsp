@@ -167,9 +167,20 @@ export default function Home() {
           console.log('Server response status:', response.status);
 
           if (!response.ok) {
-            const errorData = await response.json();
+            let errorDetails = 'Unknown error';
+            try {
+              const errorData = await response.json();
+              errorDetails = errorData.details || errorDetails;
+            } catch (jsonErr) {
+              // If not JSON, try to get text
+              try {
+                errorDetails = await response.text();
+              } catch (textErr) {
+                // ignore
+              }
+            }
             throw new Error(
-              `HTTP error! status: ${response.status}, details: ${errorData.details || 'Unknown error'}`
+              `HTTP error! status: ${response.status}, details: ${errorDetails}`
             );
           }
 
