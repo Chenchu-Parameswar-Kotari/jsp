@@ -57,48 +57,48 @@ export default function Home() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Village (Rural) / Ward (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900">Village (Rural) / Ward (Urban)</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                   placeholder="Enter village name or ward number" 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Point of Contact(s) for Coordination</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Point of Contact(s) for Coordination</label>
                 <div className="space-y-4">
                   <div className="flex gap-4 items-end">
                     <div className="flex-1">
-                      <label className="block text-xs text-gray-600">Name1:</label>
+                      <label className="block text-sm font-semibold text-gray-900">Name1:</label>
                       <input 
                         type="text" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                         placeholder="Enter contact name" 
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="block text-xs text-gray-600">Phone:</label>
+                      <label className="block text-sm font-semibold text-gray-900">Phone:</label>
                       <input 
                         type="tel" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                         placeholder="Enter phone number" 
                       />
                     </div>
                   </div>
                   <div className="flex gap-4 items-end">
                     <div className="flex-1">
-                      <label className="block text-xs text-gray-600">Name2:</label>
+                      <label className="block text-sm font-semibold text-gray-900">Name2:</label>
                       <input 
                         type="text" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                         placeholder="Enter contact name" 
                       />
                     </div>
                     <div className="flex-1">
-                      <label className="block text-xs text-gray-600">Phone:</label>
+                      <label className="block text-sm font-semibold text-gray-900">Phone:</label>
                       <input 
                         type="tel" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23]" 
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
                         placeholder="Enter phone number" 
                       />
                     </div>
