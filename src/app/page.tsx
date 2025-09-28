@@ -6,23 +6,23 @@ export default function Home() {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.checkValidity()) {
-      // Proceed with form submission
+      // Form is valid, proceed with submission
       console.log('Form is valid, submitting...');
     } else {
       // Form has validation errors
-      console.log('Form has validation errors');
+      form.reportValidity();
     }
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-8 px-2">
+    <div className="min-h-screen bg-white flex items-center justify-center py-4 px-2 sm:py-8">
       <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 border-red-600 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-20 bg-[#E31B23] flex items-center justify-center z-10 rounded-t-2xl">
-          <h1 className="text-2xl font-bold text-white tracking-wide drop-shadow-lg">
+        <div className="absolute top-0 left-0 w-full h-auto py-4 sm:h-20 bg-[#E31B23] flex items-center justify-center z-10 rounded-t-2xl">
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-wide drop-shadow-lg px-2 text-center">
             Janasena Membership & Accidental Insurance Form
           </h1>
         </div>
-        <div className="pt-24 pb-8 px-8">
+        <div className="pt-20 sm:pt-24 pb-6 sm:pb-8 px-3 sm:px-8">
           <div className="text-center mb-8">
             <p className="mt-2 text-gray-900 text-base font-semibold">
               Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
@@ -113,26 +113,28 @@ export default function Home() {
 
             <div className="mt-8">
               <h2 className="text-lg font-semibold text-gray-800 mb-4">Point(s) of Contact for Coordination</h2>
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto -mx-3 sm:mx-0">
                 <table className="min-w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden">
                   <thead className="bg-[#E31B23] text-white">
                     <tr>
-                      <th className="px-4 py-3 font-bold text-lg">Key Element</th>
-                      <th className="px-4 py-3 font-bold text-lg">Member</th>
-                      <th className="px-4 py-3 font-bold text-lg">Nominee</th>
+                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Key Element</th>
+                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Member</th>
+                      <th className="px-2 sm:px-4 py-3 font-bold text-base sm:text-lg">Nominee</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Member Name</td>
-                      <td className="px-4 py-3" colSpan={2}>
-                        <div className="flex gap-2">
+                                            <td className="px-2 sm:px-4 py-2 sm:py-3 font-semibold text-gray-900 whitespace-nowrap text-sm sm:text-base">Member Name</td>
+                      <td className="px-2 sm:px-4 py-2 sm:py-3" colSpan={2}>
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <input
                             type="text"
                             placeholder="Enter member's full name"
-                            className="flex-1 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
+                            className="flex-1 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
-                          <select className="w-32 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white">
+                          <select 
+                            className="w-full sm:w-32 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                          >
                             <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -150,7 +152,9 @@ export default function Home() {
                             placeholder="Enter nominee's full name"
                             className="flex-1 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
                           />
-                          <select className="w-32 rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white">
+                          <select 
+                            className="w-full sm:w-32 rounded-lg border border-gray-300 p-2 text-sm sm:text-base shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                          >
                             <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -179,18 +183,30 @@ export default function Home() {
                     <tr className="bg-gray-50">
                       <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Profession</td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter member's profession"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Profession</option>
+                          <option value="farmer">Farmer</option>
+                          <option value="business">Business</option>
+                          <option value="govt-sector">Job - Government Sector</option>
+                          <option value="private-sector">Job - Private Sector</option>
+                          <option value="software">Software Professional</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                       <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter nominee's profession"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
+                        <select
+                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                        >
+                          <option value="">Select Profession</option>
+                          <option value="farmer">Farmer</option>
+                          <option value="business">Business</option>
+                          <option value="govt-sector">Job - Government Sector</option>
+                          <option value="private-sector">Job - Private Sector</option>
+                          <option value="software">Software Professional</option>
+                          <option value="others">Others</option>
+                        </select>
                       </td>
                     </tr>
                     <tr className="bg-white">
