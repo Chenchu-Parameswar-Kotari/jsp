@@ -1,12 +1,89 @@
 'use client';
 
 export default function Home() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    
     if (form.checkValidity()) {
-      // Form is valid, proceed with submission
-      console.log('Form is valid, submitting...');
+      try {
+        const formData = new FormData();
+        
+        // Add form fields directly
+        formData.append('constituency', (form.querySelector('[name="constituency"]') as HTMLInputElement)?.value || '');
+        formData.append('mandalTown', (form.querySelector('[name="mandalTown"]') as HTMLSelectElement)?.value || '');
+        formData.append('panchayathiStreet', (form.querySelector('[name="panchayathiStreet"]') as HTMLInputElement)?.value || '');
+        formData.append('villageWard', (form.querySelector('[name="villageWard"]') as HTMLInputElement)?.value || '');
+        formData.append('contactName1', (form.querySelector('[name="contactName1"]') as HTMLInputElement)?.value || '');
+        formData.append('phone1', (form.querySelector('[name="phone1"]') as HTMLInputElement)?.value || '');
+        formData.append('contactName2', (form.querySelector('[name="contactName2"]') as HTMLInputElement)?.value || '');
+        formData.append('phone2', (form.querySelector('[name="phone2"]') as HTMLInputElement)?.value || '');
+        formData.append('memberFullName', (form.querySelector('[name="memberFullName"]') as HTMLInputElement)?.value || '');
+        formData.append('memberGender', (form.querySelector('[name="memberGender"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberQualification', (form.querySelector('[name="memberQualification"]') as HTMLInputElement)?.value || '');
+        formData.append('memberProfession', (form.querySelector('[name="memberProfession"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberReligion', (form.querySelector('[name="memberReligion"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberCaste', (form.querySelector('[name="memberCaste"]') as HTMLSelectElement)?.value || '');
+        formData.append('memberReservation', (form.querySelector('[name="memberReservation"]') as HTMLInputElement)?.value || '');
+        formData.append('memberMobileNumber', (form.querySelector('[name="memberMobileNumber"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeFullName', (form.querySelector('[name="nomineeFullName"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeGender', (form.querySelector('[name="nomineeGender"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeQualification', (form.querySelector('[name="nomineeQualification"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeProfession', (form.querySelector('[name="nomineeProfession"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeReligion', (form.querySelector('[name="nomineeReligion"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeCaste', (form.querySelector('[name="nomineeCaste"]') as HTMLSelectElement)?.value || '');
+        formData.append('nomineeReservation', (form.querySelector('[name="nomineeReservation"]') as HTMLInputElement)?.value || '');
+        formData.append('nomineeMobileNumber', (form.querySelector('[name="nomineeMobileNumber"]') as HTMLInputElement)?.value || '');
+
+        // Append file inputs
+        const memberAadhar = (form.querySelector('[name="memberAadharDocument"]') as HTMLInputElement)?.files?.[0];
+        const memberPhoto = (form.querySelector('[name="memberPhoto"]') as HTMLInputElement)?.files?.[0];
+        const nomineeAadhar = (form.querySelector('[name="nomineeAadharDocument"]') as HTMLInputElement)?.files?.[0];
+        const nomineePhoto = (form.querySelector('[name="nomineePhoto"]') as HTMLInputElement)?.files?.[0];
+
+        if (memberAadhar) formData.append('memberAadharDocument', memberAadhar);
+        if (memberPhoto) formData.append('memberPhoto', memberPhoto);
+        if (nomineeAadhar) formData.append('nomineeAadharDocument', nomineeAadhar);
+        if (nomineePhoto) formData.append('nomineePhoto', nomineePhoto);
+
+        // Submit the form with timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+        try {
+          const response = await fetch('/api/form', {
+            method: 'POST',
+            body: formData,
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId);
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(
+              `HTTP error! status: ${response.status}, details: ${errorData.details || 'Unknown error'}`
+            );
+          }
+
+          const result = await response.json();
+          console.log('Form submitted successfully:', result);
+          
+          // Reset form after successful submission
+          form.reset();
+          alert(result.message || 'Form submitted successfully!');
+        } catch (error: any) {
+          console.error('Error submitting form:', error);
+          if (error.name === 'AbortError') {
+            alert('Request timed out. Please try again.');
+          } else {
+            alert(`Failed to submit form: ${error.message}`);
+          }
+        }
+      } catch (error) {
+        console.error('Error preparing form data:', error);
+        alert('Failed to prepare form data. Please try again.');
+      }
     } else {
       // Form has validation errors
       form.reportValidity();
@@ -36,15 +113,17 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white rounded-xl shadow p-4 border border-gray-200">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Constituency</label>
-                <input 
+                                <input 
                   type="text" 
+                  name="constituency"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter constituency name" 
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Mandal/Town</label>
-                <select 
+                                <select 
+                  name="mandalTown"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
                 >
                   <option value="">Select Mandal</option>
@@ -56,16 +135,18 @@ export default function Home() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Panchayathi/Street</label>
-                <input 
+                                <input 
                   type="text" 
+                  name="panchayathiStreet"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter panchayathi or street name" 
                 />
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Village/Ward</label>
-                <input 
+                                <input 
                   type="text" 
+                  name="villageWard"
                   className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter village or ward" 
                 />
@@ -80,32 +161,42 @@ export default function Home() {
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Contact Name 1</label>
                   <input 
                     type="text" 
+                    name="contactName1"
                     className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                     placeholder="Enter contact name" 
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Phone 1</label>
                   <input 
                     type="tel" 
+                    name="phone1"
                     className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                     placeholder="Enter phone number" 
+                    pattern="[0-9]{10}"
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Contact Name 2</label>
                   <input 
                     type="text" 
+                    name="contactName2"
                     className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                     placeholder="Enter contact name" 
+                    required
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Phone 2</label>
                   <input 
                     type="tel" 
+                    name="phone2"
                     className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                     placeholder="Enter phone number" 
+                    pattern="[0-9]{10}"
+                    required
                   />
                 </div>
               </div>
@@ -124,11 +215,15 @@ export default function Home() {
                     <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
+                        name="memberFullName"
                         placeholder="Enter full name"
                         className="flex-1 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                       <select 
+                        name="memberGender"
                         className="w-full sm:w-32 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Gender</option>
                         <option value="male">Male</option>
@@ -143,15 +238,19 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Qualification</label>
                       <input
                         type="text"
+                        name="memberQualification"
                         placeholder="e.g. 10th / Graduate"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Profession</label>
                       <select
+                        name="memberProfession"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Profession</option>
                         <option value="farmer">Farmer</option>
@@ -166,7 +265,9 @@ export default function Home() {
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Religion</label>
                       <select
+                        name="memberReligion"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Religion</option>
                         <option value="hindu">Hindu</option>
@@ -181,7 +282,9 @@ export default function Home() {
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Caste</label>
                       <select
+                        name="memberCaste"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Caste Category</option>
                         <option value="oc">OC (Open Category)</option>
@@ -196,8 +299,10 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Reservation</label>
                       <input
                         type="text"
+                        name="memberReservation"
                         placeholder="Enter reservation category"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
@@ -205,27 +310,108 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Mobile Number</label>
                       <input
                         type="tel"
+                        name="memberMobileNumber"
                         placeholder="Enter mobile number"
+                        pattern="[0-9]{10}"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
-                      <input
-                        type="file"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberAadharCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberAadharFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="memberAadharCamera"
+                          type="file"
+                          name="memberAadharDocument"
+                          accept="image/*"
+                          capture="environment"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="memberAadharFile"
+                          type="file"
+                          name="memberAadharDocument"
+                          accept="image/*,.pdf"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="memberAadharLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
-                      <button
-                        type="button"
-                        className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2.5 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
-                      >
-                        Capture Photo
-                      </button>
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberPhotoCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('memberPhotoFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="memberPhotoCamera"
+                          type="file"
+                          name="memberPhoto"
+                          accept="image/*"
+                          capture="user"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="memberPhotoFile"
+                          type="file"
+                          name="memberPhoto"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="memberPhotoLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -242,11 +428,15 @@ export default function Home() {
                     <div className="flex flex-col sm:flex-row gap-2">
                       <input
                         type="text"
+                        name="nomineeFullName"
                         placeholder="Enter full name"
                         className="flex-1 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                       <select 
+                        name="nomineeGender"
                         className="w-full sm:w-32 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Gender</option>
                         <option value="male">Male</option>
@@ -261,15 +451,19 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Qualification</label>
                       <input
                         type="text"
+                        name="nomineeQualification"
                         placeholder="e.g. 10th / Graduate"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Profession</label>
                       <select
+                        name="nomineeProfession"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Profession</option>
                         <option value="farmer">Farmer</option>
@@ -284,7 +478,9 @@ export default function Home() {
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Religion</label>
                       <select
+                        name="nomineeReligion"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Religion</option>
                         <option value="hindu">Hindu</option>
@@ -299,7 +495,9 @@ export default function Home() {
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Caste</label>
                       <select
+                        name="nomineeCaste"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                        required
                       >
                         <option value="">Select Caste Category</option>
                         <option value="oc">OC (Open Category)</option>
@@ -314,8 +512,10 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Reservation</label>
                       <input
                         type="text"
+                        name="nomineeReservation"
                         placeholder="Enter reservation category"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
@@ -323,27 +523,108 @@ export default function Home() {
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Mobile Number</label>
                       <input
                         type="tel"
+                        name="nomineeMobileNumber"
                         placeholder="Enter mobile number"
+                        pattern="[0-9]{10}"
                         className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                        required
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
-                      <input
-                        type="file"
-                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                      />
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineeAadharCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineeAadharFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="nomineeAadharCamera"
+                          type="file"
+                          name="nomineeAadharDocument"
+                          accept="image/*"
+                          capture="environment"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineeAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="nomineeAadharFile"
+                          type="file"
+                          name="nomineeAadharDocument"
+                          accept="image/*,.pdf"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineeAadharLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="nomineeAadharLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
-                      <button
-                        type="button"
-                        className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2.5 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
-                      >
-                        Capture Photo
-                      </button>
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineePhotoCamera')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Take Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('nomineePhotoFile')?.click()}
+                            className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                          >
+                            Choose File
+                          </button>
+                        </div>
+                        <input
+                          id="nomineePhotoCamera"
+                          type="file"
+                          name="nomineePhoto"
+                          accept="image/*"
+                          capture="user"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineePhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <input
+                          id="nomineePhotoFile"
+                          type="file"
+                          name="nomineePhoto"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            if (e.target.files?.[0]) {
+                              document.getElementById('nomineePhotoLabel')!.textContent = e.target.files[0].name;
+                            }
+                          }}
+                        />
+                        <p id="nomineePhotoLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -367,7 +648,7 @@ export default function Home() {
           </form>
 
           <div className="text-xs text-center text-gray-500 mt-4">
-            Use Capture Photo to take a live photo (shoulder-up). Images will be automatically cropped and resized.
+            Use your phone camera to capture a photo (shoulder-up). Images will be automatically cropped and resized.
           </div>
         </div>
       </div>
