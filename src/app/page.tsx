@@ -1,4 +1,3 @@
-
 'use client';
 
 export default function Home() {
@@ -15,35 +14,38 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center py-4 px-2 sm:py-8">
-      <div className="w-full max-w-3xl rounded-2xl shadow-2xl border-2 border-red-600 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-auto py-4 sm:h-20 bg-[#E31B23] flex items-center justify-center z-10 rounded-t-2xl">
+    <main className="min-h-screen bg-white py-4 px-2 sm:py-8">
+      <div className="max-w-3xl mx-auto rounded-2xl shadow-2xl border-2 border-red-600 relative overflow-hidden">
+        <div className="w-full h-auto py-4 sm:h-20 bg-[#E31B23] flex items-center justify-center rounded-t-2xl">
           <h1 className="text-xl sm:text-2xl font-bold text-white tracking-wide drop-shadow-lg px-2 text-center">
             Janasena Membership & Accidental Insurance Form
           </h1>
         </div>
-        <div className="pt-20 sm:pt-24 pb-6 sm:pb-8 px-3 sm:px-8">
-          <div className="text-center mb-8">
-            <p className="mt-2 text-gray-900 text-base font-semibold">
-              Fill this form to register for <span className="text-[#E31B23] font-bold">JANASENA</span> membership and accidental insurance coverage.
+
+        <div className="pt-6 pb-6 px-4 sm:px-6">
+          <div className="text-center mb-6">
+            <p className="text-gray-900 text-sm sm:text-base font-semibold">
+              Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
               <br />
               Please provide accurate details for both Member and Nominee
             </p>
           </div>
-          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
-            <div className="space-y-6">
+
+          <form onSubmit={handleSubmit} noValidate className="space-y-6">
+            {/* Location Details */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white rounded-xl shadow p-4 border border-gray-200">
               <div>
-                <label className="block text-sm font-semibold text-gray-900">Constituency</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-1">Constituency</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                  className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter constituency name" 
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-900">Mandal(Rural)/ Town (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-1">Mandal/Town</label>
                 <select 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
+                  className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
                 >
                   <option value="">Select Mandal</option>
                   <option value="sri-kalahasti">Sri Kalahasti</option>
@@ -53,304 +55,322 @@ export default function Home() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-900">Panchayathi(Rural) / Street (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-1">Panchayathi/Street</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
+                  className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
                   placeholder="Enter panchayathi or street name" 
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-gray-900">Village (Rural) / Ward (Urban)</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-1">Village/Ward</label>
                 <input 
                   type="text" 
-                  className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                  placeholder="Enter village name or ward number" 
+                  className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                  placeholder="Enter village or ward" 
                 />
               </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-900 mb-2">Point of Contact(s) for Coordination</label>
-                <div className="space-y-4">
-                  <div className="flex gap-4 items-end">
-                    <div className="flex-1">
-                      <label className="block text-sm font-semibold text-gray-900">Name1:</label>
-                      <input 
-                        type="text" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                        placeholder="Enter contact name" 
+            </div>
+
+            {/* Contact Details */}
+            <div className="bg-white rounded-xl shadow p-4 border border-gray-200 space-y-4">
+              <h3 className="text-lg font-semibold text-gray-900">Points of Contact</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Contact Name 1</label>
+                  <input 
+                    type="text" 
+                    className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                    placeholder="Enter contact name" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Phone 1</label>
+                  <input 
+                    type="tel" 
+                    className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                    placeholder="Enter phone number" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Contact Name 2</label>
+                  <input 
+                    type="text" 
+                    className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                    placeholder="Enter contact name" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-1">Phone 2</label>
+                  <input 
+                    type="tel" 
+                    className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
+                    placeholder="Enter phone number" 
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Member and Nominee Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Member Details */}
+              <div className="bg-white rounded-xl shadow-lg border-2 border-[#E31B23] overflow-hidden">
+                <div className="bg-[#E31B23] py-3 px-4">
+                  <h2 className="text-lg font-bold text-white">Member Details</h2>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-1">Full Name & Gender</label>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter full name"
+                        className="flex-1 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
                       />
-                    </div>
-                    <div className="flex-1">
-                      <label className="block text-sm font-semibold text-gray-900">Phone:</label>
-                      <input 
-                        type="tel" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                        placeholder="Enter phone number" 
-                      />
+                      <select 
+                        className="w-full sm:w-32 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
                     </div>
                   </div>
-                  <div className="flex gap-4 items-end">
-                    <div className="flex-1">
-                      <label className="block text-sm font-semibold text-gray-900">Name2:</label>
-                      <input 
-                        type="text" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                        placeholder="Enter contact name" 
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Qualification</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 10th / Graduate"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
                       />
                     </div>
-                    <div className="flex-1">
-                      <label className="block text-sm font-semibold text-gray-900">Phone:</label>
-                      <input 
-                        type="tel" 
-                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white" 
-                        placeholder="Enter phone number" 
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Profession</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Profession</option>
+                        <option value="farmer">Farmer</option>
+                        <option value="business">Business</option>
+                        <option value="govt-sector">Job - Government Sector</option>
+                        <option value="private-sector">Job - Private Sector</option>
+                        <option value="software">Software Professional</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Religion</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Religion</option>
+                        <option value="hindu">Hindu</option>
+                        <option value="muslim">Muslim</option>
+                        <option value="christian">Christian</option>
+                        <option value="buddhism">Buddhism</option>
+                        <option value="jainism">Jainism</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Caste</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Caste Category</option>
+                        <option value="oc">OC (Open Category)</option>
+                        <option value="bc">BC (Backward Class)</option>
+                        <option value="sc">SC (Scheduled Caste)</option>
+                        <option value="st">ST (Scheduled Tribe)</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Reservation</label>
+                      <input
+                        type="text"
+                        placeholder="Enter reservation category"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
                       />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Mobile Number</label>
+                      <input
+                        type="tel"
+                        placeholder="Enter mobile number"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
+                      <input
+                        type="file"
+                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
+                      <button
+                        type="button"
+                        className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2.5 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                      >
+                        Capture Photo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Nominee Details */}
+              <div className="bg-white rounded-xl shadow-lg border-2 border-[#E31B23] overflow-hidden">
+                <div className="bg-[#E31B23] py-3 px-4">
+                  <h2 className="text-lg font-bold text-white">Nominee Details</h2>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-900 mb-1">Full Name & Gender</label>
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <input
+                        type="text"
+                        placeholder="Enter full name"
+                        className="flex-1 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                      />
+                      <select 
+                        className="w-full sm:w-32 rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Qualification</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 10th / Graduate"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Profession</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Profession</option>
+                        <option value="farmer">Farmer</option>
+                        <option value="business">Business</option>
+                        <option value="govt-sector">Job - Government Sector</option>
+                        <option value="private-sector">Job - Private Sector</option>
+                        <option value="software">Software Professional</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Religion</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Religion</option>
+                        <option value="hindu">Hindu</option>
+                        <option value="muslim">Muslim</option>
+                        <option value="christian">Christian</option>
+                        <option value="buddhism">Buddhism</option>
+                        <option value="jainism">Jainism</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Caste</label>
+                      <select
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900"
+                      >
+                        <option value="">Select Caste Category</option>
+                        <option value="oc">OC (Open Category)</option>
+                        <option value="bc">BC (Backward Class)</option>
+                        <option value="sc">SC (Scheduled Caste)</option>
+                        <option value="st">ST (Scheduled Tribe)</option>
+                        <option value="others">Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Reservation</label>
+                      <input
+                        type="text"
+                        placeholder="Enter reservation category"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Mobile Number</label>
+                      <input
+                        type="tel"
+                        placeholder="Enter mobile number"
+                        className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">AADHAR Document</label>
+                      <input
+                        type="file"
+                        className="w-full rounded-lg border border-gray-300 p-2 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-900 mb-1">Photo</label>
+                      <button
+                        type="button"
+                        className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2.5 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
+                      >
+                        Capture Photo
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8">
-              <h2 className="text-lg font-semibold text-gray-800 mb-4">Point(s) of Contact for Coordination</h2>
-              <div className="overflow-x-auto -mx-3 sm:mx-0">
-                <table className="w-full border-2 border-[#E31B23] text-sm rounded-xl shadow-lg overflow-hidden table-fixed">
-                  <thead className="bg-[#E31B23] text-white">
-                    <tr>
-                      <th className="w-1/4 px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Key Element</th>
-                      <th className="w-[37.5%] px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Member</th>
-                      <th className="w-[37.5%] px-2 sm:px-4 py-2 sm:py-3 font-bold text-xs sm:text-lg">Nominee</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Member Name</td>
-                      <td className="px-2 sm:px-4 py-2 sm:py-3" colSpan={2}>
-                        <div className="flex flex-col sm:flex-row gap-1 sm:gap-3">
-                          <input
-                            type="text"
-                            placeholder="Enter member's full name"
-                            className="w-full flex-1 rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                          />
-                          <select 
-                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-1 sm:mt-0"
-                          >
-                            <option value="">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                          </select>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Nominee Name</td>
-                      <td className="px-3 sm:px-4 py-3" colSpan={2}>
-                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                          <input
-                            type="text"
-                            placeholder="Enter nominee's full name"
-                            className="w-full flex-1 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                          />
-                          <select 
-                            className="w-full sm:w-40 rounded-lg border border-gray-300 p-2 sm:p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white mt-2 sm:mt-0"
-                          >
-                            <option value="">Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                          </select>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-2 sm:px-4 py-2 sm:py-3 font-semibold text-gray-900 whitespace-nowrap text-xs sm:text-sm">Qualification / Education</td>
-                      <td className="px-2 sm:px-4 py-2 sm:py-3">
-                        <input
-                          type="text"
-                          placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                      <td className="px-2 sm:px-4 py-2 sm:py-3">
-                        <input
-                          type="text"
-                          placeholder="e.g. 10th / Graduate"
-                          className="w-full rounded-lg border border-gray-300 p-1.5 sm:p-2.5 text-xs sm:text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Profession</td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Profession</option>
-                          <option value="farmer">Farmer</option>
-                          <option value="business">Business</option>
-                          <option value="govt-sector">Job - Government Sector</option>
-                          <option value="private-sector">Job - Private Sector</option>
-                          <option value="software">Software Professional</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Profession</option>
-                          <option value="farmer">Farmer</option>
-                          <option value="business">Business</option>
-                          <option value="govt-sector">Job - Government Sector</option>
-                          <option value="private-sector">Job - Private Sector</option>
-                          <option value="software">Software Professional</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Religion</td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Religion</option>
-                          <option value="hindu">Hindu</option>
-                          <option value="muslim">Muslim</option>
-                          <option value="christian">Christian</option>
-                          <option value="buddhism">Buddhism</option>
-                          <option value="jainism">Jainism</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Religion</option>
-                          <option value="hindu">Hindu</option>
-                          <option value="muslim">Muslim</option>
-                          <option value="christian">Christian</option>
-                          <option value="buddhism">Buddhism</option>
-                          <option value="jainism">Jainism</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Reservation</td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter member's reservation"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="text"
-                          placeholder="Enter nominee's reservation"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Caste</td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Caste Category</option>
-                          <option value="oc">OC (Open Category)</option>
-                          <option value="bc">BC (Backward Class)</option>
-                          <option value="sc">SC (Scheduled Caste)</option>
-                          <option value="st">ST (Scheduled Tribe)</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                      <td className="px-4 py-3">
-                        <select
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white"
-                        >
-                          <option value="">Select Caste Category</option>
-                          <option value="oc">OC (Open Category)</option>
-                          <option value="bc">BC (Backward Class)</option>
-                          <option value="sc">SC (Scheduled Caste)</option>
-                          <option value="st">ST (Scheduled Tribe)</option>
-                          <option value="others">Others</option>
-                        </select>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">Mobile Number</td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="tel"
-                          placeholder="Enter member's mobile number"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="tel"
-                          placeholder="Enter nominee's mobile number"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500 bg-white"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="px-4 py-3 font-semibold text-gray-900 whitespace-nowrap">AADHAR (upload)</td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="file"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <input
-                          type="file"
-                          className="w-full rounded-lg border border-gray-300 p-2 shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 bg-white file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-[#E31B23]/10 file:text-[#E31B23] hover:file:bg-[#E31B23]/20"
-                        />
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="px-3 py-2 font-medium text-gray-700 whitespace-nowrap">Photo (upload / camera)</td>
-                      <td className="px-3 py-2">
-                        <button
-                          type="button"
-                          className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-3 py-2 font-bold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
-                        >
-                          Capture Member Photo
-                        </button>
-                      </td>
-                      <td className="px-3 py-2">
-                        <button
-                          type="button"
-                          className="w-full bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-3 py-2 font-bold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
-                        >
-                          Capture Nominee Photo
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="text-xs text-gray-500 mt-2">
-                  Use Capture to take live <span className="italic">photo</span> (shoulder-up), Cropping/resizing done client-side.
-                </div>
-              </div>
-            </div>
             <div className="flex justify-center gap-4 mt-8">
-              <button type="submit" className="bg-red-500 text-white font-bold py-2 px-6 rounded-lg shadow hover:bg-red-600 transition">
+              <button 
+                type="submit" 
+                className="bg-[#E31B23] text-white font-bold py-2.5 px-8 rounded-lg shadow hover:bg-[#E31B23]/90 transition"
+              >
                 Submit
               </button>
-              <button type="reset" className="bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-lg shadow hover:bg-gray-300 transition">
+              <button 
+                type="reset" 
+                className="bg-gray-200 text-gray-700 font-bold py-2.5 px-8 rounded-lg shadow hover:bg-gray-300 transition"
+              >
                 Reset
               </button>
             </div>
           </form>
+
+          <div className="text-xs text-center text-gray-500 mt-4">
+            Use Capture Photo to take a live photo (shoulder-up). Images will be automatically cropped and resized.
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
