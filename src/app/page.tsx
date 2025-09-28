@@ -13,7 +13,7 @@ export default function Home() {
             <p className="mt-2 text-gray-900 text-base font-semibold">
               Fill this form to register for <span className="text-[#E31B23] font-bold">Janasena</span> membership and accidental insurance coverage.
               <br />
-              Please provide accurate details for both Member and Nominee.
+              Please provide accurate details for both Member and Nominee
             </p>
           </div>
           <form className="space-y-6">
