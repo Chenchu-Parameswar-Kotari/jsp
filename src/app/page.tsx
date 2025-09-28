@@ -1,63 +1,170 @@
 'use client';
 
+import { useState } from 'react';
+
+interface ValidationErrors {
+  [key: string]: string;
+}
+
+const fieldLabels: { [key: string]: string } = {
+  constituency: 'Constituency',
+  mandalTown: 'Mandal/Town',
+  panchayathiStreet: 'Panchayathi/Street',
+  villageWard: 'Village/Ward',
+  contactName1: 'Contact Name 1',
+  phone1: 'Phone 1',
+  contactName2: 'Contact Name 2',
+  phone2: 'Phone 2',
+  memberFullName: 'Member Full Name',
+  memberGender: 'Member Gender',
+  memberQualification: 'Member Qualification',
+  memberProfession: 'Member Profession',
+  memberReligion: 'Member Religion',
+  memberCaste: 'Member Caste',
+  memberReservation: 'Member Reservation',
+  memberMobileNumber: 'Member Mobile Number',
+  memberAadharDocument: 'Member AADHAR Document',
+  memberPhoto: 'Member Photo',
+  nomineeFullName: 'Nominee Full Name',
+  nomineeGender: 'Nominee Gender',
+  nomineeQualification: 'Nominee Qualification',
+  nomineeProfession: 'Nominee Profession',
+  nomineeReligion: 'Nominee Religion',
+  nomineeCaste: 'Nominee Caste',
+  nomineeReservation: 'Nominee Reservation',
+  nomineeMobileNumber: 'Nominee Mobile Number',
+  nomineeAadharDocument: 'Nominee AADHAR Document',
+  nomineePhoto: 'Nominee Photo'
+};
+
 export default function Home() {
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  console.log('Form submission started');
     e.preventDefault();
+    e.stopPropagation();
     const form = e.currentTarget;
     
-    if (form.checkValidity()) {
-      try {
-        const formData = new FormData();
+    // Clear previous validation errors
+    setValidationErrors({});
+
+    // Collect validation errors
+    const errors: ValidationErrors = {};
+    const formElements = form.elements;
+    
+    for (let i = 0; i < formElements.length; i++) {
+      const element = formElements[i] as HTMLInputElement | HTMLSelectElement;
+      if (element.name && !element.checkValidity()) {
+        let message = element.validationMessage;
         
-        // Add form fields directly
-        formData.append('constituency', (form.querySelector('[name="constituency"]') as HTMLInputElement)?.value || '');
-        formData.append('mandalTown', (form.querySelector('[name="mandalTown"]') as HTMLSelectElement)?.value || '');
-        formData.append('panchayathiStreet', (form.querySelector('[name="panchayathiStreet"]') as HTMLInputElement)?.value || '');
-        formData.append('villageWard', (form.querySelector('[name="villageWard"]') as HTMLInputElement)?.value || '');
-        formData.append('contactName1', (form.querySelector('[name="contactName1"]') as HTMLInputElement)?.value || '');
-        formData.append('phone1', (form.querySelector('[name="phone1"]') as HTMLInputElement)?.value || '');
-        formData.append('contactName2', (form.querySelector('[name="contactName2"]') as HTMLInputElement)?.value || '');
-        formData.append('phone2', (form.querySelector('[name="phone2"]') as HTMLInputElement)?.value || '');
-        formData.append('memberFullName', (form.querySelector('[name="memberFullName"]') as HTMLInputElement)?.value || '');
-        formData.append('memberGender', (form.querySelector('[name="memberGender"]') as HTMLSelectElement)?.value || '');
-        formData.append('memberQualification', (form.querySelector('[name="memberQualification"]') as HTMLInputElement)?.value || '');
-        formData.append('memberProfession', (form.querySelector('[name="memberProfession"]') as HTMLSelectElement)?.value || '');
-        formData.append('memberReligion', (form.querySelector('[name="memberReligion"]') as HTMLSelectElement)?.value || '');
-        formData.append('memberCaste', (form.querySelector('[name="memberCaste"]') as HTMLSelectElement)?.value || '');
-        formData.append('memberReservation', (form.querySelector('[name="memberReservation"]') as HTMLInputElement)?.value || '');
-        formData.append('memberMobileNumber', (form.querySelector('[name="memberMobileNumber"]') as HTMLInputElement)?.value || '');
-        formData.append('nomineeFullName', (form.querySelector('[name="nomineeFullName"]') as HTMLInputElement)?.value || '');
-        formData.append('nomineeGender', (form.querySelector('[name="nomineeGender"]') as HTMLSelectElement)?.value || '');
-        formData.append('nomineeQualification', (form.querySelector('[name="nomineeQualification"]') as HTMLInputElement)?.value || '');
-        formData.append('nomineeProfession', (form.querySelector('[name="nomineeProfession"]') as HTMLSelectElement)?.value || '');
-        formData.append('nomineeReligion', (form.querySelector('[name="nomineeReligion"]') as HTMLSelectElement)?.value || '');
-        formData.append('nomineeCaste', (form.querySelector('[name="nomineeCaste"]') as HTMLSelectElement)?.value || '');
-        formData.append('nomineeReservation', (form.querySelector('[name="nomineeReservation"]') as HTMLInputElement)?.value || '');
-        formData.append('nomineeMobileNumber', (form.querySelector('[name="nomineeMobileNumber"]') as HTMLInputElement)?.value || '');
+        // Custom validation messages based on error type
+        if (element.type === 'tel' && element.validity.patternMismatch) {
+          message = 'Please enter a valid 10-digit phone number';
+        } else if (element.validity.valueMissing) {
+          message = `${fieldLabels[element.name]} is required`;
+        } else if (element.type === 'file' && element.files?.length === 0) {
+          message = `Please select a file for ${fieldLabels[element.name]}`;
+        }
+        
+        errors[element.name] = message;
 
-        // Append file inputs
-        const memberAadhar = (form.querySelector('[name="memberAadharDocument"]') as HTMLInputElement)?.files?.[0];
-        const memberPhoto = (form.querySelector('[name="memberPhoto"]') as HTMLInputElement)?.files?.[0];
-        const nomineeAadhar = (form.querySelector('[name="nomineeAadharDocument"]') as HTMLInputElement)?.files?.[0];
-        const nomineePhoto = (form.querySelector('[name="nomineePhoto"]') as HTMLInputElement)?.files?.[0];
+      }
+    }
 
-        if (memberAadhar) formData.append('memberAadharDocument', memberAadhar);
-        if (memberPhoto) formData.append('memberPhoto', memberPhoto);
-        if (nomineeAadhar) formData.append('nomineeAadharDocument', nomineeAadhar);
-        if (nomineePhoto) formData.append('nomineePhoto', nomineePhoto);
+    // Update validation errors state
+    setValidationErrors(errors);
+    console.log('Validation errors:', errors);
+
+    // Check file inputs before starting submission
+    const memberAadharInput = document.getElementById('memberAadharDocument') as HTMLInputElement;
+    const memberPhotoInput = document.getElementById('memberPhoto') as HTMLInputElement;
+    // For nominee, check both possible file input ids for each field
+    const nomineeAadharInputCamera = document.getElementById('nomineeAadharCamera') as HTMLInputElement;
+    const nomineeAadharInputFile = document.getElementById('nomineeAadharFile') as HTMLInputElement;
+    const nomineePhotoInputCamera = document.getElementById('nomineePhotoCamera') as HTMLInputElement;
+    const nomineePhotoInputFile = document.getElementById('nomineePhotoFile') as HTMLInputElement;
+
+    if (!memberAadharInput?.files?.length) {
+      errors.memberAadharDocument = 'Member AADHAR Document is required';
+    }
+    if (!memberPhotoInput?.files?.length) {
+      errors.memberPhoto = 'Member Photo is required';
+    }
+    // Nominee Aadhar: at least one of the two inputs must have a file
+    if (!(nomineeAadharInputCamera?.files?.length || nomineeAadharInputFile?.files?.length)) {
+      errors.nomineeAadharDocument = 'Nominee AADHAR Document is required';
+    }
+    // Nominee Photo: at least one of the two inputs must have a file
+    if (!(nomineePhotoInputCamera?.files?.length || nomineePhotoInputFile?.files?.length)) {
+      errors.nomineePhoto = 'Nominee Photo is required';
+    }
+
+
+    // Update validation errors with any file errors
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+    }
+
+    // Clear any previous success message
+    setSuccessMessage(null);
+
+    if (Object.keys(errors).length === 0) {
+  console.log('Form is valid, starting submission');
+  setIsSubmitting(true);
+      try {
+        // Create FormData directly from the form element
+        const formData = new FormData(form);
+        
+        // Ensure all form fields are included
+        const formFields = [
+          'constituency', 'mandalTown', 'panchayathiStreet', 'villageWard',
+          'contactName1', 'phone1', 'contactName2', 'phone2',
+          'memberFullName', 'memberGender', 'memberQualification', 'memberProfession',
+          'memberReligion', 'memberCaste', 'memberReservation', 'memberMobileNumber',
+          'nomineeFullName', 'nomineeGender', 'nomineeQualification', 'nomineeProfession',
+          'nomineeReligion', 'nomineeCaste', 'nomineeReservation', 'nomineeMobileNumber'
+        ];
+        
+        // Log form data for debugging
+        console.log('Form data before processing:', Object.fromEntries(formData.entries()));
+
+        // Append files to form data
+        if (memberAadharInput?.files?.[0]) formData.append('memberAadharDocument', memberAadharInput.files[0]);
+        if (memberPhotoInput?.files?.[0]) formData.append('memberPhoto', memberPhotoInput.files[0]);
+        // Nominee Aadhar: use first available file from either input
+        if (nomineeAadharInputCamera?.files?.[0]) {
+          formData.append('nomineeAadharDocument', nomineeAadharInputCamera.files[0]);
+        } else if (nomineeAadharInputFile?.files?.[0]) {
+          formData.append('nomineeAadharDocument', nomineeAadharInputFile.files[0]);
+        }
+        // Nominee Photo: use first available file from either input
+        if (nomineePhotoInputCamera?.files?.[0]) {
+          formData.append('nomineePhoto', nomineePhotoInputCamera.files[0]);
+        } else if (nomineePhotoInputFile?.files?.[0]) {
+          formData.append('nomineePhoto', nomineePhotoInputFile.files[0]);
+        }
 
         // Submit the form with timeout
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
         try {
+          console.log('Sending form data to server...');
           const response = await fetch('/api/form', {
             method: 'POST',
             body: formData,
-            signal: controller.signal
+            signal: controller.signal,
+            headers: {
+              // Don't set Content-Type header - browser will set it with boundary for FormData
+            }
           });
 
           clearTimeout(timeoutId);
+          console.log('Server response status:', response.status);
 
           if (!response.ok) {
             const errorData = await response.json();
@@ -71,22 +178,18 @@ export default function Home() {
           
           // Reset form after successful submission
           form.reset();
-          alert(result.message || 'Form submitted successfully!');
+          setSuccessMessage(result.message || 'Form submitted successfully!');
+          setShowSuccessModal(true);
         } catch (error) {
           console.error('Error submitting form:', error);
-          if (error instanceof Error) {
-            if (error.name === 'AbortError') {
-              alert('Request timed out. Please try again.');
-            } else {
-              alert(`Failed to submit form: ${error.message}`);
-            }
-          } else {
-            alert('An unknown error occurred.');
-          }
+          // Optionally, display error in UI here
+        } finally {
+          setIsSubmitting(false);
         }
       } catch (error) {
         console.error('Error preparing form data:', error);
         alert('Failed to prepare form data. Please try again.');
+        setIsSubmitting(false);
       }
     } else {
       // Form has validation errors
@@ -112,17 +215,29 @@ export default function Home() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} noValidate className="space-y-6">
+          <form 
+            onSubmit={(e) => {
+              console.log('Form submit event triggered');
+              handleSubmit(e);
+            }} 
+            noValidate 
+            className="space-y-6">
             {/* Location Details */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white rounded-xl shadow p-4 border border-gray-200">
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Constituency</label>
-                                <input 
-                  type="text" 
-                  name="constituency"
-                  className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
-                  placeholder="Enter constituency name" 
-                />
+                                <div className="space-y-1">
+                  <input 
+                    type="text" 
+                    name="constituency"
+                    className={`w-full rounded-lg border ${validationErrors.constituency ? 'border-red-500' : 'border-gray-300'} p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500`}
+                    placeholder="Enter constituency name"
+                    required
+                  />
+                  {validationErrors.constituency && (
+                    <p className="text-red-500 text-xs">{validationErrors.constituency}</p>
+                  )}
+                </div>
               </div>
               <div>
                 <label className="block text-sm font-semibold text-gray-900 mb-1">Mandal/Town</label>
@@ -173,14 +288,19 @@ export default function Home() {
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Phone 1</label>
-                  <input 
-                    type="tel" 
-                    name="phone1"
-                    className="w-full rounded-lg border border-gray-300 p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500" 
-                    placeholder="Enter phone number" 
-                    pattern="[0-9]{10}"
-                    required
-                  />
+                  <div className="space-y-1">
+                    <input 
+                      type="tel" 
+                      name="phone1"
+                      className={`w-full rounded-lg border ${validationErrors.phone1 ? 'border-red-500' : 'border-gray-300'} p-2.5 text-sm shadow-sm focus:border-[#E31B23] focus:ring-[#E31B23] text-gray-900 placeholder-gray-500`}
+                      placeholder="Enter phone number" 
+                      pattern="[0-9]{10}"
+                      required
+                    />
+                    {validationErrors.phone1 && (
+                      <p className="text-red-500 text-xs">{validationErrors.phone1}</p>
+                    )}
+                  </div>
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-1">Contact Name 2</label>
@@ -328,45 +448,55 @@ export default function Home() {
                         <div className="flex gap-2">
                           <button
                             type="button"
-                            onClick={() => document.getElementById('memberAadharCamera')?.click()}
+                            onClick={() => {
+                              const input = document.getElementById('memberAadharDocument') as HTMLInputElement;
+                              if (input) {
+                                input.accept = "image/*";
+                                input.setAttribute('capture', 'environment');
+                                input.click();
+                              }
+                            }}
                             className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
                           >
                             Take Photo
                           </button>
                           <button
                             type="button"
-                            onClick={() => document.getElementById('memberAadharFile')?.click()}
+                            onClick={() => {
+                              const input = document.getElementById('memberAadharDocument') as HTMLInputElement;
+                              if (input) {
+                                input.accept = "image/*,.pdf";
+                                input.removeAttribute('capture');
+                                input.click();
+                              }
+                            }}
                             className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
                           >
                             Choose File
                           </button>
                         </div>
                         <input
-                          id="memberAadharCamera"
-                          type="file"
-                          name="memberAadharDocument"
-                          accept="image/*"
-                          capture="environment"
-                          className="hidden"
-                          onChange={(e) => {
-                            if (e.target.files?.[0]) {
-                              document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
-                            }
-                          }}
-                        />
-                        <input
-                          id="memberAadharFile"
+                          id="memberAadharDocument"
                           type="file"
                           name="memberAadharDocument"
                           accept="image/*,.pdf"
                           className="hidden"
+                          required
                           onChange={(e) => {
                             if (e.target.files?.[0]) {
                               document.getElementById('memberAadharLabel')!.textContent = e.target.files[0].name;
+                              setValidationErrors(prev => ({ ...prev, memberAadharDocument: '' }));
                             }
                           }}
                         />
-                        <p id="memberAadharLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                        <div>
+                          <p id="memberAadharLabel" className={`text-sm ${validationErrors.memberAadharDocument ? 'text-red-500' : 'text-gray-600'} truncate`}>
+                            No file chosen
+                          </p>
+                          {validationErrors.memberAadharDocument && (
+                            <p className="text-red-500 text-xs mt-1">{validationErrors.memberAadharDocument}</p>
+                          )}
+                        </div>
                       </div>
                     </div>
 
@@ -376,45 +506,55 @@ export default function Home() {
                         <div className="flex gap-2">
                           <button
                             type="button"
-                            onClick={() => document.getElementById('memberPhotoCamera')?.click()}
+                            onClick={() => {
+                              const input = document.getElementById('memberPhoto') as HTMLInputElement;
+                              if (input) {
+                                input.accept = "image/*";
+                                input.setAttribute('capture', 'user');
+                                input.click();
+                              }
+                            }}
                             className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
                           >
                             Take Photo
                           </button>
                           <button
                             type="button"
-                            onClick={() => document.getElementById('memberPhotoFile')?.click()}
+                            onClick={() => {
+                              const input = document.getElementById('memberPhoto') as HTMLInputElement;
+                              if (input) {
+                                input.accept = "image/*";
+                                input.removeAttribute('capture');
+                                input.click();
+                              }
+                            }}
                             className="flex-1 bg-[#E31B23]/10 text-[#E31B23] rounded-lg px-4 py-2 text-sm font-semibold border-2 border-[#E31B23] shadow hover:bg-[#E31B23]/20 transition"
                           >
                             Choose File
                           </button>
                         </div>
                         <input
-                          id="memberPhotoCamera"
-                          type="file"
-                          name="memberPhoto"
-                          accept="image/*"
-                          capture="user"
-                          className="hidden"
-                          onChange={(e) => {
-                            if (e.target.files?.[0]) {
-                              document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
-                            }
-                          }}
-                        />
-                        <input
-                          id="memberPhotoFile"
+                          id="memberPhoto"
                           type="file"
                           name="memberPhoto"
                           accept="image/*"
                           className="hidden"
+                          required
                           onChange={(e) => {
                             if (e.target.files?.[0]) {
                               document.getElementById('memberPhotoLabel')!.textContent = e.target.files[0].name;
+                              setValidationErrors(prev => ({ ...prev, memberPhoto: '' }));
                             }
                           }}
                         />
-                        <p id="memberPhotoLabel" className="text-sm text-gray-600 truncate">No file chosen</p>
+                        <div>
+                          <p id="memberPhotoLabel" className={`text-sm ${validationErrors.memberPhoto ? 'text-red-500' : 'text-gray-600'} truncate`}>
+                            No file chosen
+                          </p>
+                          {validationErrors.memberPhoto && (
+                            <p className="text-red-500 text-xs mt-1">{validationErrors.memberPhoto}</p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -638,18 +778,66 @@ export default function Home() {
             <div className="flex justify-center gap-4 mt-8">
               <button 
                 type="submit" 
-                className="bg-[#E31B23] text-white font-bold py-2.5 px-8 rounded-lg shadow hover:bg-[#E31B23]/90 transition"
+                disabled={isSubmitting}
+                className={`${
+                  isSubmitting 
+                    ? 'bg-[#E31B23]/70 cursor-not-allowed' 
+                    : 'bg-[#E31B23] hover:bg-[#E31B23]/90'
+                } text-white font-bold py-2.5 px-8 rounded-lg shadow transition inline-flex items-center justify-center min-w-[120px]`}
               >
-                Submit
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit'
+                )}
               </button>
               <button 
-                type="reset" 
-                className="bg-gray-200 text-gray-700 font-bold py-2.5 px-8 rounded-lg shadow hover:bg-gray-300 transition"
+                type="reset"
+                disabled={isSubmitting}
+                className={`${
+                  isSubmitting 
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                } font-bold py-2.5 px-8 rounded-lg shadow transition`}
               >
                 Reset
               </button>
             </div>
+
+            {isSubmitting && (
+              <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div className="bg-white p-6 rounded-lg shadow-xl flex flex-col items-center space-y-4">
+                  <svg className="animate-spin h-10 w-10 text-[#E31B23]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <p className="text-gray-700 text-lg font-semibold">Submitting Form...</p>
+                  <p className="text-gray-500 text-sm text-center">Please wait while we process your submission</p>
+                </div>
+              </div>
+            )}
           </form>
+
+          {showSuccessModal && successMessage && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+              <div className="bg-white rounded-lg shadow-lg p-8 max-w-sm w-full text-center border-2 border-green-500">
+                <h2 className="text-xl font-bold text-green-700 mb-2">Success</h2>
+                <p className="text-green-700 text-base mb-4">{successMessage}</p>
+                <button
+                  className="mt-2 px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition"
+                  onClick={() => setShowSuccessModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="text-xs text-center text-gray-500 mt-4">
             Use your phone camera to capture a photo (shoulder-up). Images will be automatically cropped and resized.

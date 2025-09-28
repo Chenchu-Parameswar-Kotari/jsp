@@ -46,8 +46,15 @@ export async function POST(request: Request) {
     // Make the request to the external API
     const response = await fetch('https://jsp-api.onrender.com/api/form', {
       method: 'POST',
-      body: newFormData
+      body: newFormData,
+      headers: {
+        // Don't set Content-Type header - it will be set automatically with boundary for FormData
+      }
     });
+    
+    // Log the response status and headers
+    console.log('External API response status:', response.status);
+    console.log('External API response headers:', Object.fromEntries(response.headers.entries()));
 
     // Log the response status and headers
     console.log('API Response Status:', response.status);
